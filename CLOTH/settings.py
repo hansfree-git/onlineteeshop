@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from decouple import config, Csv
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -220,3 +221,5 @@ STATIC_FILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # 'https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/main/about-banner-free-img-1024x683.jpg'
 # "https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/thumbnails/anchor-bracelet-blue-free-img.jpg
 # 'https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/thumbnails/T_4_front1.jpg'
+
+django_heroku.settings(locals())
