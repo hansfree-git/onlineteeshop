@@ -3,7 +3,7 @@ from.import views
 
 
 urlpatterns=[
-	path('catalog/',views.index,name='home-page'),
+	path('',views.index,name='home-page'),
 	path('category/<slug:category_slug>/show_category',views.show_category, name='catalog_category'),
     path('product/<slug:product_slug>/show_product', views.show_product,name='catalog_product'),
     path('review/product/add', views.add_review, name='product_add_review'),
