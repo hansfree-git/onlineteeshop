@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'tagging',
     'marketing',
     'utils',
-    # 's3boto', #name of the app we created to hold our boto files for media storage
+    's3boto', #name of the app we created to hold our boto files for media storage
 
     'storages',
 ]
@@ -209,8 +209,8 @@ MEDIA_URL = 'https://%s/%s/'%(AWS_S3_CUSTOM_DOMAIN, MEDIA_FILES_LOCATION)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'products_images')
 
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# DEFAULT_FILE_STORAGE = 's3boto.storage_backends.MediaStorage' #for the media files, where s3boto is the app we created
+STATIC_FILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 's3boto.storage_backends.MediaStorage' #for the media files, where s3boto is the app we created
 
 # 'https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/main/about-banner-free-img-1024x683.jpg'
 # "https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/thumbnails/anchor-bracelet-blue-free-img.jpg
