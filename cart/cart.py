@@ -54,8 +54,6 @@ def add_to_cart(request):
     product_slug = postdata.get('product_slug', '')
     # get quantity added, return 1 if empty
     quantity = postdata.get('quantity', 1)
-    size=postdata.get('size')
-    color=postdata.get('color')
     # fetch the product or return a missing page error
     p = get_object_or_404(Product, slug=product_slug)
     # get products in cart
@@ -64,9 +62,6 @@ def add_to_cart(request):
     # check to see if item is already in cart
     for cart_item in cart_products:
         if cart_item.product.id == p.id:
-            # add product variation to cart
-            cart_item.variations.add(size)
-            cart_item.variations.add(color)
             # update the quantity if found
             cart_item.augment_quantity(quantity)
             product_in_cart = True
@@ -77,8 +72,6 @@ def add_to_cart(request):
         ci.quantity = quantity
         ci.cart_id = _cart_id(request)
         ci.save()
-        ci.variations.add(size)
-        ci.variations.add(color)
 
 def cart_distinct_item_count(request):
     return get_cart_items(request).count()
