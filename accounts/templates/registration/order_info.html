@@ -1,0 +1,56 @@
+{% extends "catalog.html" %}
+
+{% load checkout_tags %}
+
+{% block content %}
+
+{%for message in messages%}
+	{{message}}
+{%endfor%}
+
+<h3>Edit Order Information</h3>
+{{ response }}
+{% if error_message %}
+	<ul class="errorlist">
+		<li>{{ error_message }}</li>
+	</ul>
+{% endif %}
+
+
+
+<form action="{% url 'add-user-address'%}" method="post">{%csrf_token%}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<table>
+	<tr>
+		<th colspan="2">
+			<input id="submit-address" type="submit" value="Save Information" class="submit"/>
+		</th>
+	</tr>
+	</table>
+	<div>
+	    <h3>Saved Addresses</h3>
+	    {%for address in user_addresses %}
+
+	    {%if request.user.userdefaultaddress.shipping_address.id == address.id %}
+	    <ul><input type="radio" name="shipping-address" value="{{address.id}}" checked="checked" />{{address.get_address}}</ul>
+
+	    
+	    {%endif%}
+	    {%endfor%}
+	    	
+	    {%if billing_addresses%}
+            <div>
+                <h3>Billing Addresses</h3>
+                {%for address in billing_addresses %}
+                <ul><input type="radio" name="billing-address" value="{{address.id}}" checked="checked" />{{address.get_address}}</ul>
+
+                <ul><input type="radio" name="billing-address" value="{{address.id}}" checked="checked" />{{request.user.userdefaultaddress.billing_address}}</ul>
+                {%endfor%}
+            </div>
+        {%endif%}
+	</div>
+</form>
+
+{% endblock %}

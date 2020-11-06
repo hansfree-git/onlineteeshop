@@ -1,0 +1,13 @@
+<h3>Categories</h3>
+<ul id="categories">
+  {% with active_categories as cats %} {% for c in cats %}
+  <li>
+    {% ifequal catalog_category request_path %} {{ c.name }}<br />
+    {% else %}
+    <a href="{% url 'catalog_category' c.slug %}" class="category"
+      >{{ c.name }}</a
+    ><br />
+    {% endifequal %}
+  </li>
+  {% endfor %} {% endwith %}
+</ul>

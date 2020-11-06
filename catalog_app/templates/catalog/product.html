@@ -1,0 +1,190 @@
+{% extends "catalog.html" %}
+
+{% load humanize %}
+{% load catalog_filters %}
+{% block content %}
+
+<div class="product_image">
+    <img src="{{ p.image.url }}" alt="{{ p.name }}" />
+    <br />
+   <!-- {{ p.image_caption }}-->
+</div>
+<h1><span property="v:name">{{ p.name|capfirst }}</span></h1>
+Brand: <em><span property="v:brand">{{ p.brand|capfirst }}<span></em>
+<br />
+
+
+In categor{{ categories.count|pluralize:"y,ies" }}:
+{% for c in categories %}
+<a href="{% url 'catalog_category' c.slug%}">
+    <span property="v:category">
+        {{ c.name|capfirst }}
+    </span>
+</a>
+{% if not forloop.last %}, {% endif %}
+{% endfor %}
+<br /><br>
+{% if p.sale_price %}
+Was: <del>{{ p.old_price|currency }}</del>
+<br />
+Now: <span property="v:price">{{ p.price|currency }}</span>
+{% else %}
+Price: <span property="v:price">{{ p.price|currency }}</span>
+{% endif %}
+<br />
+
+
+   
+
+<form method="post" action="" class="cart">
+    {%csrf_token%}
+    {{ form.as_p }}
+
+     {%if p.variation_set.all%}
+
+<!--variation in sizes-->
+    {%if p.variation_set.size%}
+    Size: <select name="size">
+        {%for item in p.variation_set.size %}
+        <option value="{{item.id}}" >{{item.name|capfirst}}</option>
+        {%endfor%}
+    </select>
+    {%endif%}
+<br><br>
+<!--variation in color-->
+    {%if p.variation_set.color%}
+    Color:<select name="color">
+        {%for item in p.variation_set.color %}
+        <option value="{{item.id}}">{{item.name|capfirst}}</option>
+        {%endfor%}
+    </select>
+    {%endif%}
+
+
+    {%endif%}
+
+    <br><br>
+    <input type="submit" value="Add To Cart" name="submit" alt="Add To Cart" id="addCart"/>
+</form>
+
+<div class="cb"><br /><br /></div>
+
+
+
+
+<!--cross sells-->
+<h3>Related Products</h3>
+    {% for p in p.cross_sells_hybrid %}
+        {% include 'tags/product_thumbnail.html' %}
+    {% empty %}
+        No related products.
+    {% endfor %}
+<div class="cb"><br /><br /></div>
+
+<h3>Product Description</h3>
+<span property="v:description">{{ p.description }}</span>
+</div>
+
+<div class="tag-review-body">
+    <div class="cb"><br /><br /></div>
+        <h3>Product Tags</h3>
+        
+            <div id="tags">
+            <form method="POST" action="{% url 'add_tag' %}">
+                {%csrf_token%}
+                {% for tag in p.tags %}
+                    {% include 'catalog/tag_link.html' %}
+                {% endfor %}
+            </div>
+            <br />
+            {% if request.user.is_authenticated %}
+                <label for="id_tag" id="id_tag_label">Tag this product (must be at least three characters):</label>
+                <br />
+                <input name="id_tag" id="id_tag" type="text" />
+                <input name="add_tag" type="submit" value="Tag It" id="add_tag" />
+                <input name="slug" type="hidden" id="id_slug" value="{{ p.slug }}" />
+            </form>    
+            {% else %}
+                <a href="">
+                    Log in to tag this product.
+                </a>
+            {% endif %}
+        <div class="cb"><br /><br /></div>
+</div>
+
+
+<div class="tag-review-body">
+    <div class="cb"><br /><br /></div>
+        <h3>Product Reviews</h3>
+            {% if request.user.is_authenticated %}
+            <a id="add_review">Write a Review</a>
+        <div id="review_form">
+            <form id="review" action="{% url 'product_add_review' %}" method="POST">
+                {%csrf_token%}
+            <div id="review_errors"></div>
+            <table>
+            {{ review_form.as_table }}
+            <tbody><tr><td colspan="2">
+                <input name="slug" type="hidden" id="id_slug" value="{{ p.slug }}" />
+                <input type="submit" id="submit_review" value="Submit" />
+                {# <input type="submit" id="cancel_review" value="Cancel" /> #}
+                <a href="javascript:void(0);" id="cancel_review">Cancel</a>
+            </td></tr>
+            </tbody></table>
+        </form>
+        </div>
+            {% else %}
+                <a href="">
+                    Log in to write your own review.
+                </a>
+            {% endif %}
+            
+        <div class="cb"><br /><br /></div>
+        
+        <div id="reviews">
+            {% for review in product_reviews %}
+                {% include 'catalog/product_review.html' %}
+            {% empty %}
+                <div id="no_reviews">
+                    No product reviews yet.
+                </div>
+            {% endfor %}
+        </div>
+        <div class="cb"><br /><br /></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+   
+ul.errorlist{
+background-color:Red;
+color:White;
+padding:2px;
+} 
+
+.sidebarIEPadder,
+#content{
+  background-color: white;
+}   
+.contentIEPadder{
+    padding: 10px;
+}
+.tag-review-body{
+    padding: 10px;
+}
+#id_tag_label
+{
+    padding: 10px;
+}
+
+</style>
+
+{% endblock %}

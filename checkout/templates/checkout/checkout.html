@@ -1,0 +1,130 @@
+{% extends "catalog.html" %}
+
+{%load static%}
+
+{% block content %}
+{%load catalog_filters%}
+{% load checkout_tags %}
+<!--Stripe publishable key-->
+<script>var stripe = Stripe('{{stripe_pub}}');</script> 
+
+
+
+{% if not request.user.is_authenticated %}
+<div class="fr">
+    <a href="">
+        Have an account?<br />Sign in now!
+    </a>
+</div>
+{% endif %}
+
+<h1>Checkout</h1>
+{%for field in user_address%}
+{%if field.errors%}
+    <ul class="errorlist">
+        {{field.errors}}
+    </ul>
+{%endif%}
+{%endfor%}  
+
+
+
+{% if error_message %}
+<ul class="errorlist">
+    <li>{{ error_message }}</li>
+</ul>
+{% endif %}
+
+
+
+<fieldset>
+    <h3><legend>Add shipment address and make payment</legend></h3>
+    
+<form method="POST" action="" id="payment-form">{%csrf_token%}
+    <fieldset class="checkout">
+        <h4><legend>Contact Info</legend></h4>
+        <table>
+            <span class="checkout"><h3>Email :
+                <span 
+                style='margin-left:5em'>{{request.user.email}}</span>
+                <span 
+                style='margin-left:5em'>Phone :</span>
+                <span 
+                style='margin-left:5em'>{{request.user.phone}}</span>
+            </h3>
+            </span> 
+        </table>
+        <h3>Order Total :<span style='margin-left:5em'> $ {{ final_amount|floatformat:2}}</span></h3>
+    </fieldset>
+    <table>
+        <fieldset>
+            {%if current_addresses%}
+            <div>
+                
+                <h3>Saved Addresses</h3>
+                {%for address in current_addresses %}
+                {%if request.user.userdefaultaddress.shipping_address.id == address.id %}
+                <ul><input type="radio" name="shipping-address" value="{{address.id}}" checked="checked" />{{address.get_address}}</ul>
+                {%else%}
+                <ul><input type="radio" name="shipping-address" value="{{address.id}}" />{{address.get_address}}</ul>
+                {%endif%}
+                {%endfor%}
+            </div>
+            {%endif%}
+            <br><br><br>
+            <!-- displaying saved billing addresses -->
+            {%if billing_addresses%}
+            <div>
+                <h3>Billing Addresses</h3>
+                {%for address in billing_addresses %}
+                {%if request.user.userdefaultaddress.billing_address.id == address.id %}
+                <ul><input type="radio" name="billing-address" value="{{address.id}}" checked="checked" />{{address.get_address}}</ul>
+                {%else%}
+                <ul><input type="radio" name="billing-address" value="{{address.id}}" />{{address.get_address}}</ul>
+
+                <ul><input type="radio" name="billing-address" value="{{address.id}}" checked="checked" />{{request.user.userdefaultaddress.billing_address}}</ul>
+                {%endif%}
+                {%endfor%}
+            </div>
+            {%endif%}
+            <br><br><br>
+            <!-- displaying credit card info -->
+                <table>
+                    <fieldset>
+                         <div class="form-row">
+                            <label for="card-element">
+                              <h3>Credit or debit card</h3>
+                            </label>
+                            <div id="card-element">
+                              <!-- A Stripe Element will be inserted here. -->
+                            </div>
+
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                    </fieldset>
+                </table>
+        </fieldset>
+    </table>
+    <br><br><br>
+    <button>Submit Payment</button>            
+</form>
+
+<br>
+
+<!-- new shipping address form -->
+
+{%if user_address%}
+<h3>Add New Shipping Address</h3>
+<form method="post" action="{% url 'add-user-address'%}">
+    {%csrf_token%}
+    <fieldset>
+        <table>
+            {{user_address.as_p}}
+        </table>
+        <input type="submit" name="" value="Add new address">
+</form>
+{%endif%}
+
+
+{% endblock %}

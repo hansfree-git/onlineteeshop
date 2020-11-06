@@ -1,0 +1,7 @@
+<div class="product_thumbnail">
+    <a href="{% url 'catalog_product' p.slug %}">
+        <img src="{{ p.thumbnailURL }}" alt="{{ p.name }}" class="bn" />
+        <br />
+        {{ p.name }}
+    </a>
+</div>

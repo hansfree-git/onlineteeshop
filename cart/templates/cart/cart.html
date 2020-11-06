@@ -1,0 +1,153 @@
+{% extends "catalog.html" %} {% block content %} {% load humanize %}
+{% load catalog_filters %}
+<table summary="Your Shopping Cart" id="shopping_cart">
+    <caption>Your Shopping Cart</caption>
+    <thead>
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th scope="col" class="right">Total</th>
+        </tr>
+    </thead>
+    <tfoot>
+
+        <tr>
+            <th class="right" colspan="5">
+                Cart Subtotal:
+            </th>
+            <th class="right">
+                {{ cart_subtotal|currency }}
+            </th>
+        </tr>
+        {% if cart_items %}
+
+        <tr>
+            <th class="right" colspan="6">
+               <button> <a href="{% url 'checkout' %}">Checkout Now</a></button>
+            </th>
+        </tr>
+        {% endif %}
+    </tfoot>
+    <tbody>
+        {% if cart_items %}
+        {% for item in cart_items %}
+        <tr>
+            <td>
+                <a href="{{ item.get_absolute_url }}" class="cart">
+                    {{ item.name }}
+                </a>
+            </td>
+
+            <td>{{ item.price|currency }}</td>
+            <td class="right">
+                <form method="post" action="." class="cart">
+                    {%csrf_token%}
+                    <label for="quantity">Quantity:</label>
+                    <input type="text" name="quantity" value="{{ item.quantity }}" id="quantity" size="2" class="quantity" maxlength="5" />
+                    <input type="hidden" name="item_id" value="{{ item.id }}" />
+            </td>
+            <td>
+                <input type="submit" name="submit" value="Update" />
+                </form>
+            </td>
+            <td>
+                <form method="post" action="." class="cart">
+                    {%csrf_token%}
+                    <input type="hidden" name="item_id" value="{{ item.id }}" />
+                    <input type="submit" name="submit" value="Remove" />
+                </form>
+            </td>
+            <td class="right">{{ item.total|currency }}</td>
+        </tr>
+        <tr>
+            <td>
+                {%if item.variations.all%}
+                    <ul>
+                        {%for subitem in item.variations.all%}
+                        
+                            <li>{{subitem.category|capfirst}} : {{subitem.name|capfirst}}</li>
+                        
+                        {%endfor%}
+                    </ul>
+                {%endif%}
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6" style="height:30px;">
+                Your cart is empty.
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+<br /><br />
+{%for message in messages%}
+    <div class="error-message">
+        <tr>{{message}}</tr>
+    </div>
+    {%endfor%}
+
+<style type="text/css">
+
+div.product_thumbnail{
+  align-content: center;  
+}
+div.product_thumbnail img {
+    width: 300px;
+    height: 300px;
+
+    
+}
+
+/* product page styles */
+div.product_image {
+    float: left;
+    padding: 0 10px 10px 0;
+}
+
+
+    /* styles for shopping cart page */
+table#shopping_cart{
+    width:100%;
+    border-collapse:collapse;
+    color:#616161;
+}
+h1,caption{
+    text-align:left;
+    font-size:x-large; 
+    margin-bottom:15px;
+    color:Black;
+}
+th,td{
+    text-align:left;
+    padding:3px;
+}
+thead th{
+    color:White;
+    background-color:#616161;
+}
+tfoot th{
+    height:40px;
+}
+
+table#shopping_cart th.right, td.right{
+    text-align:right;
+}
+a.cart{
+    color:DarkOrange;
+}
+    
+div.error-message{
+    color: red;
+    font-weight: bold;
+    border: 2px solid green;
+
+}
+
+</style>
+{%endblock%}

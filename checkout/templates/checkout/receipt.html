@@ -1,0 +1,92 @@
+{% extends "catalog.html" %}
+{% load catalog_filters %}
+{% block content %}
+<table id="receipt">
+	<br>
+	<h4>Transaction ID: {{transaction_id}}</h4>
+    <h4 class="caption">Thank you {{new_order.user.username}}, your order has been placed!<br><br>
+        Your Order Number is: {{new_order.order_id}}
+    </h4>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th class="right" scope="col">Total</th>
+        </tr>
+    </thead>
+
+
+
+    <tfoot>
+        <tr>
+            <td colspan="4" class="right" style="color:red;height:15px">Tax:<span style="margin-left:1px">${{ new_order.tax_total|floatformat:2 }}</span></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="right" style="height:30px;">
+                Order Total: <strong>${{ new_order.final_total|floatformat:2 }}</strong></td>
+        </tr>
+    </tfoot>
+    <tbody>
+        {% for item in ordered %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price|currency }}</td>
+            <td>{{ item.quantity }}</td>
+            <td class="right">{{ item.total|currency }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <div class="vcard">
+        <div class="fn org">
+            Tees Shop
+        </div>
+        <div class="adr">
+            <div class="street-address">12345 Google Way Ave</div>
+        </div>
+        <span class="locality">Beach Town</span>
+        <abbr class="region" title="California">CA</abbr>
+        <span class="postal-code">93456</span>
+    </div>
+    </div>
+    <div class="country-name">USA</div>
+    <div>Phone: <span class="tel">+1-555-555-1212</span></div>
+    <div>Email:<span class="email">info@teeshop.com</span></div>
+
+<div class="your-address">
+    <h4>Your Shipping Address:</h4>
+	<div class="fn org">
+        {{address_name|capfirst}} 
+    </div>
+	<div class="adr">
+        <div class="street-address">{{address}}</div>
+    </div>
+    <span class="locality">{{shipping_city}}, </span>
+    <abbr class="region">{{shipping_state|slice:'2'}}, {{shipping_state}}</abbr>
+ 	<div class="country-name">{{shipping_country}}, <span class="postal-code">{{shipping_zip}}</span></div>
+ 	<div>Phone: <span class="tel">{{phone}}</span></div>
+</div>
+
+{%if message%}{%for message in messages%}<h3>{{message}}</h3>{%endfor%}{%endif%}
+</table>
+
+
+<h4 align="center">Best Regards! <br/><br/><i>HansFree</i></h4>
+
+
+
+<style type="text/css">
+table#receipt {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.your-address,.caption {
+    margin-left: 70%;
+    padding: 10px;
+    font-weight: bold;
+}
+
+</style>
+{% endblock %}
