@@ -158,8 +158,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'STATIC_ROOT')
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'STATIC_ROOT')
 
 
 # MEDIA_URL = '/products_images/'
@@ -202,12 +202,11 @@ AWS_DEFAULT_ACL=None
 
 AWS_LOCATION='static'
 
+STATIC_URL = 'https://%s/%s/'%(AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'STATIC_ROOT')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
-STATIC_URL='https://%s/%s/'%(AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 
 MEDIA_FILES_LOCATION='products_images'
