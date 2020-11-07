@@ -294,3 +294,34 @@ table#receipt{
 #noscript_padder{
   height:30px;
 }
+
+/*for mobile phones and small screens*/
+@media (max-width: 800px) {
+  body{
+    float: none;
+    font-size: 140%;
+  }
+  #main{
+    width: 100%;
+  }
+  #banner{
+    width: 100%;
+  }
+  #navigation{
+    width: 100%;
+  }
+  #navigation ul {
+  list-style: 
+
+  }
+  #navigation ul li {
+  float: none;
+  
+  }
+  div.fr{
+    float: none;
+    font-size: 18px;
+    padding:5px;
+  }
+
+}
