@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = config('SECRET_KEY')
 SECRET_KEY='03416278ee91db015da41f4464fc7533ea281fe6021d9f7dc5'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['onlineteeshop.herokuapp.com', '127.0.0.1'] #set to '*' if debug is false
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
@@ -182,8 +182,8 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * SESSION_COOKIE_DAYS
 
 CACHE_TIMEOUT = 60 * 60
 
-AWS_ACCESS_KEY_ID="AKIAR3QF2PCCEXW45TS5"
-AWS_SECRET_ACCESS_KEY="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"
+AWS_ACCESS_KEY_ID=config("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY=config("AWS_SECRET_ACCESS_KEY")
 AWS_S3_OBJECT_PARAMETERS={'CacheControl':'max-age=86400',}
 
 AWS_STORAGE_BUCKET_NAME='teeshop-static'
