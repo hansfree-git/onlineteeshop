@@ -27,7 +27,7 @@ SECRET_KEY='03416278ee91db015da41f4464fc7533ea281fe6021d9f7dc5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['tees-shop.herokuapp.com', '127.0.0.1'] #set to '*' if debug is false
+ALLOWED_HOSTS = ['onlineteeshop.herokuapp.com', '127.0.0.1'] #set to '*' if debug is false
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Application definition
