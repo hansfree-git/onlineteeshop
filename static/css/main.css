@@ -337,10 +337,9 @@ table#receipt{
   }
   div#footer a{
     font-size: 22px;
-    width: 100%;
+    display: block;
+    padding: 10px;
     
   }
-  .id{
-    padding:10px;
-  }
+
 }
