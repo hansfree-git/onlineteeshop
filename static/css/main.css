@@ -296,32 +296,51 @@ table#receipt{
 }
 
 /*for mobile phones and small screens*/
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   body{
-    float: none;
+    overflow-x: hidden;
     font-size: 140%;
+
   }
   #main{
     width: 100%;
   }
   #banner{
     width: 100%;
+    float: none;
+  }
+  div.cart_box{
+    float: none;
   }
   #navigation{
     width: 100%;
   }
-  #navigation ul {
-  list-style: 
-
-  }
   #navigation ul li {
   float: none;
-  
   }
+
   div.fr{
     float: none;
     font-size: 18px;
     padding:5px;
   }
-
+  .contentIEPadder{
+    width: 55%;
+  }
+  div.product_thumbnail{
+    width: 100%;
+  }
+  div.product_image {width: 100%;}
+  .footerIEPadder{
+    float: none;
+    
+  }
+  div#footer a{
+    font-size: 22px;
+    width: 100%;
+    
+  }
+  .id{
+    padding:10px;
+  }
 }
