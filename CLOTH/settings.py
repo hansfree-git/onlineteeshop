@@ -25,7 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = config('SECRET_KEY')
 SECRET_KEY='03416278ee91db015da41f4464fc7533ea281fe6021d9f7dc5'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+# this let heroku send where the problem is coming from to your email whendebug is False
+# ADMINS = (('Kobe hans', 'kobehans1@gmail.com'),)
 
 ALLOWED_HOSTS = ['onlineteeshop.herokuapp.com', '127.0.0.1'] #set to '*' if debug is false
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
@@ -154,6 +157,8 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -209,7 +214,7 @@ MEDIA_URL = 'https://%s/%s/'%(AWS_S3_CUSTOM_DOMAIN, MEDIA_FILES_LOCATION)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'products_images')
 
 
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_FILE_STORAGE = 's3boto.storage_backends.MediaStorage' #for the media files, where s3boto is the app we created
 
 # 'https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/main/about-banner-free-img-1024x683.jpg'
