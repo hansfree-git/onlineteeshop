@@ -71,10 +71,9 @@ HOST_MIDDLEWARE_URLCONF_MAP = 'www.teeshop.com'
 # CANON_URLS_TO_REWRITE = ['tee-shop.com', 'tees-shop.com']
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -162,6 +161,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_URL = '/static/'
+
+
 
 
 
@@ -215,14 +217,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'products_images')
 
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_FILE_STORAGE = 's3boto.storage_backends.MediaStorage' #for the media files, where s3boto is the app we created
 
 # 'https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/main/about-banner-free-img-1024x683.jpg'
 # "https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/thumbnails/anchor-bracelet-blue-free-img.jpg
 # 'https://teeshop-static.s3.us-east-2.amazonaws.com/products_images/products/thumbnails/T_4_front1.jpg'
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'STATIC_ROOT')
+
 
 
 MEDIA_URL = '/products_images/'
