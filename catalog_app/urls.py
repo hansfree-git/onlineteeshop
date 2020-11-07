@@ -6,7 +6,7 @@ from store_app import views as store
 urlpatterns=[
 	path('',views.index,name='home-page'),
 	
-	path('about/',store.about,name='about-page'),
+	# path('about/',store.about,name='about-page'),
 	path('contact/',store.contact,name='contact-page'),
 	path('privacy/',store.privacy,name='privacy-page'),
 
