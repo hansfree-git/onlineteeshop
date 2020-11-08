@@ -303,6 +303,9 @@ table#receipt{
     font-size: 140%;
 
   }
+  h3{
+    width: 70%;
+  }
   #main{
     width: 100%;
   }
@@ -328,6 +331,15 @@ table#receipt{
   .contentIEPadder{
     width: 50%;
     align-items: center;
+  }
+  .sidebarIEPadder{
+    width: 100%;
+    align-items: center;
+  }
+  #content {
+    width: 100%;
+    float: none;
+    padding: 10px;
   }
   div.product_thumbnail{
     width: 100%;
