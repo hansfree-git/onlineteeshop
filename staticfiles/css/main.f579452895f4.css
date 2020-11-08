@@ -297,8 +297,9 @@ table#receipt{
 }
 
 /*for mobile phones and small screens*/
-@media screen and (min-width:320px) and (max-width:600px)  {
+@media screen and (min-width:320px) and (max-width:900px)  {
   body{
+    background-color: yellow;
     font-size: 100%;
 
   }
@@ -333,6 +334,7 @@ table#receipt{
   }
   .sidebarIEPadder{
     width: 100%;
+    margin-right: 10px;
     align-items: center;
 
   }
