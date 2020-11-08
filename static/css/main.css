@@ -4,7 +4,6 @@ html {
 html,
 body {
   background-color: Silver;
-  overflow-x: hidden;
 }
 .cb {
   clear: both;
@@ -346,9 +345,7 @@ table#receipt{
 }
 
 @media screen and (min-width:700px) and (max-width:850px)  {
-  body{
 
-  }
   #main{
     width: 100%;
   }
