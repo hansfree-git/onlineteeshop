@@ -335,6 +335,7 @@ table#receipt{
   .sidebarIEPadder{
     width: 100%;
     align-items: center;
+
   }
   #content {
     width: 100%;
@@ -371,9 +372,7 @@ table#receipt{
     width: 100%;
     align-items: center;
   }
-  div.cart_box{
-    float: none;
-  }
+
   #navigation{
     width: 100%;
   }
