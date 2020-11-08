@@ -332,12 +332,12 @@ table#receipt{
     float: none;
     
   }
-  div#footer a{
+  /*div#footer a{
     font-size: 22px;
     display: block;
     padding: 10px;
     
-  }
+  }*/
   .sidebarIEPadder{
     width: 100%;
   }
