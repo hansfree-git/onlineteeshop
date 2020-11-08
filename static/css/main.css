@@ -297,10 +297,9 @@ table#receipt{
 }
 
 /*for mobile phones and small screens*/
-@media screen and (min-width:320px) and (max-width:600px)  {
+@media screen and (min-width:320px) and (max-width:800px)  {
   body{
     font-size: 100%;
-
   }
   h3{
     width: 100%;
