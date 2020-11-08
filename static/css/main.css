@@ -298,11 +298,7 @@ table#receipt{
 
 /*for mobile phones and small screens*/
 @media screen and (min-width:320px) and (max-width:600px)  {
-  body{
-    
-    font-size: 100%;
 
-  }
   #main{
     width: 100%;
   }
@@ -325,11 +321,8 @@ table#receipt{
     font-size: 18px;
     padding:5px;
   }
-  .sidebarIEPadder{
-    width: 100%;
-  }
   .contentIEPadder{
-    width: 80%;
+    width: 50%;
     align-items: center;
   }
   div.product_thumbnail{
@@ -346,10 +339,14 @@ table#receipt{
     padding: 10px;
     
   }
+  .sidebarIEPadder{
+    width: 100%;
+  }
 
 }
 
 @media screen and (min-width:700px) and (max-width:850px)  {
+  body{
 
   }
   #main{
@@ -372,9 +369,6 @@ table#receipt{
     float: none;
     font-size: 18px;
     padding:5px;
-  }
-  .sidebarIEPadder{
-    width: 100%;
   }
 
 }
