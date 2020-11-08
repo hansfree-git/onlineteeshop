@@ -4,7 +4,7 @@ html {
 html,
 body {
   background-color: Silver;
-  overflow-x: hidden;
+  
 }
 .cb {
   clear: both;
@@ -297,11 +297,14 @@ table#receipt{
 }
 
 /*for mobile phones and small screens*/
-@media screen and (min-width:320px) and (max-width:600px)  {
+@media screen and (min-width:320px) and (max-width:700px)  {
   body{
     
-    font-size: 100%;
+    font-size: 140%;
 
+  }
+  h3{
+    width: 100%;
   }
   #main{
     width: 100%;
@@ -325,14 +328,19 @@ table#receipt{
     font-size: 18px;
     padding:5px;
   }
+  .contentIEPadder{
+    width: 100%;
+    align-items: center;
+  }
   .sidebarIEPadder{
     width: 100%;
-    float: none;
-  }
-  .contentIEPadder{
-    width: 80%;
-    float: none;
     align-items: center;
+
+  }
+  #content {
+    width: 100%;
+    float: none;
+    padding: 10px;
   }
   div.product_thumbnail{
     width: 100%;
@@ -351,9 +359,8 @@ table#receipt{
 
 }
 
-@media screen and (min-width:700px) and (max-width:850px)  {
-
-  }
+@media screen and (min-width:700px) and (max-width:880px)  {
+  
   #main{
     width: 100%;
   }
@@ -361,8 +368,12 @@ table#receipt{
     width: 100%;
     float: none;
   }
-  div.cart_box{
-    float: none;
+  .sidebarIEPadder{
+    width: 100%;
+    align-items: center;
+  }
+  .contentIEPadder{{
+    width: 100%;
   }
   #navigation{
     width: 100%;

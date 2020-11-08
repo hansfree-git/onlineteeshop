@@ -4,7 +4,7 @@ html {
 html,
 body {
   background-color: Silver;
-  
+  overflow-x: hidden;
 }
 .cb {
   clear: both;
@@ -297,12 +297,11 @@ table#receipt{
 }
 
 /*for mobile phones and small screens*/
-@media screen and (min-width:320px) and (max-width:800px)  {
+@media screen and (min-width:320px) and (max-width:600px)  {
   body{
+    
     font-size: 100%;
-  }
-  h3{
-    width: 100%;
+
   }
   #main{
     width: 100%;
@@ -326,20 +325,12 @@ table#receipt{
     font-size: 18px;
     padding:5px;
   }
-  .contentIEPadder{
-    width: 100%;
-    align-items: center;
-  }
   .sidebarIEPadder{
     width: 100%;
-    align-items: center;
-
   }
-  table#shopping_cart{width:100%;}
-  #content {
-    width: 100%;
-    float: none;
-    padding: 10px;
+  .contentIEPadder{
+    width: 80%;
+    align-items: center;
   }
   div.product_thumbnail{
     width: 100%;
@@ -358,8 +349,9 @@ table#receipt{
 
 }
 
-/*@media screen and (min-width:700px) and (max-width:880px)  {
-  
+@media screen and (min-width:700px) and (max-width:850px)  {
+
+  }
   #main{
     width: 100%;
   }
@@ -367,11 +359,9 @@ table#receipt{
     width: 100%;
     float: none;
   }
-  .sidebarIEPadder{
-    width: 100%;
-    align-items: center;
+  div.cart_box{
+    float: none;
   }
-
   #navigation{
     width: 100%;
   }
@@ -383,5 +373,8 @@ table#receipt{
     font-size: 18px;
     padding:5px;
   }
+  .sidebarIEPadder{
+    width: 100%;
+  }
 
-}*/
+}
