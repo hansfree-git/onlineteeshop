@@ -304,7 +304,7 @@ table#receipt{
 
   }
   h3{
-    width: 70%;
+    width: 85%;
   }
   #main{
     width: 100%;
@@ -370,6 +370,10 @@ table#receipt{
   #banner{
     width: 100%;
     float: none;
+  }
+  .sidebarIEPadder{
+    width: 100%;
+    align-items: center;
   }
   div.cart_box{
     float: none;
