@@ -28,7 +28,7 @@ SECRET_KEY='03416278ee91db015da41f4464fc7533ea281fe6021d9f7dc5'
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # this let heroku send where the problem is coming from to your email whendebug is False
-# ADMINS = (('Kobe hans', 'kobehans1@gmail.com'),)
+ADMINS = (('Kobe hans', 'kobehans1@gmail.com'),)
 
 ALLOWED_HOSTS = ['onlineteeshop.herokuapp.com', '127.0.0.1'] #set to '*' if debug is false
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
@@ -59,10 +59,9 @@ INSTALLED_APPS = [
     'marketing',
     'utils',
     's3boto', #name of the app we created to hold our boto files for media storage
-
     'storages',
 ]
-
+ 
 # for use with URL Canonicalization Middleware:
 # this is the canonical hostname to be used by your app (required)
 HOST_MIDDLEWARE_URLCONF_MAP = 'www.teeshop.com'
@@ -74,6 +73,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,9 +81,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-     # flat pages in middleware
+    # flat pages in middleware
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-
     # canoncalization in middleware
     'marketing.urlcanon.URLCanonicalizationMiddleware',
 ]
