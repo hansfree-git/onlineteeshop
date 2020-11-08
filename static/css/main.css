@@ -297,7 +297,13 @@ table#receipt{
 
 /*for mobile phones and small screens*/
 @media screen and (min-width:320px) and (max-width:600px)  {
+  body{
+    overflow-x: hidden;
 
+  }
+  .sideBarIEPadder{
+    width: 100%;
+  }
   #main{
     width: 100%;
   }
@@ -332,14 +338,11 @@ table#receipt{
     float: none;
     
   }
-  /*div#footer a{
+  div#footer a{
     font-size: 22px;
     display: block;
     padding: 10px;
     
-  }*/
-  .sidebarIEPadder{
-    width: 100%;
   }
 
 }
