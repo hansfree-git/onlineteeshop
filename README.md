@@ -1,0 +1,3 @@
+The system works like a typical shop where sellers display products for potential customers to see and make purchase. Customers are able to add products to their shopping carts, increase quantity, remove and update cart. Customers when satisfied with thier cart can now checkout by providing their payment card details, shipping and billing address. For this particular system, I used Stripe Payment Integration so as to comply with PCI.
+
+The system automatically converts the shopping cart to an order and when payment is successfully received from the customer, a receipt is generated with order details including receipt number and transaction id which is unique to every successfully placed order. Amount is also credited to the seller's bank account or credit card. 
