@@ -27,8 +27,6 @@ SECRET_KEY='03416278ee91db015da41f4464fc7533ea281fe6021d9f7dc5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# this let heroku send where the problem is coming from to your email whendebug is False
-ADMINS = (('Kobe hans', 'kobehans1@gmail.com'),)
 
 ALLOWED_HOSTS = ['onlineteeshop.herokuapp.com', '127.0.0.1'] #set to '*' if debug is false
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
@@ -64,7 +62,7 @@ INSTALLED_APPS = [
  
 # for use with URL Canonicalization Middleware:
 # this is the canonical hostname to be used by your app (required)
-HOST_MIDDLEWARE_URLCONF_MAP = 'www.teeshop.com'
+
 # these are the hostnames that will be redirected to the CANON_URL_HOSTNAME 
 # (optional; if not provided, all non-matching will be redirected)
 # CANON_URLS_TO_REWRITE = ['tee-shop.com', 'tees-shop.com']
