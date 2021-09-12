@@ -17,6 +17,6 @@ pytz==2019.3
 s3transfer==0.3.3
 shellescape==3.8.1
 simplejson==3.17.2
-sqlparse==0.3.1
+sqlparse==0.4.2
 stripe==2.54.0
 whitenoise==5.2.0
