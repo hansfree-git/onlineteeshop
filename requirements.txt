@@ -2,7 +2,7 @@
 boto3==1.14.44
 botocore==1.17.44
 dj-database-url==0.5.0
-Django==3.0.5
+Django==3.2.21
 django-heroku==0.3.1
 django-storages==1.9.1
 django-tagging==0.5.0
