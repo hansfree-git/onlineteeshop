@@ -2,7 +2,7 @@
 boto3==1.14.44
 botocore==1.17.44
 dj-database-url==0.5.0
-Django==3.0.5
+Django==4.2.27
 django-heroku==0.3.1
 django-storages==1.9.1
 django-tagging==0.5.0
@@ -17,6 +17,7 @@ pytz==2019.3
 s3transfer==0.3.3
 shellescape==3.8.1
 simplejson==3.17.2
-sqlparse==0.3.1
+sqlparse==0.5.4
 stripe==2.54.0
 whitenoise==5.2.0
+urllib3>=2.6.0 # not directly required, pinned by Snyk to avoid a vulnerability
